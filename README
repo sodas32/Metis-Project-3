@@ -1,0 +1,18 @@
+This project is comprised of three notebooks:
+“Project3_PostgreSQL.ipynb” contains code for connecting to and setting up a database and table in PostgreSQL 
+
+“Project3_EDAClassification.ipynb” contains code for exploratory data analysis with full data set and baseline versions of multiple classification models 
+
+“Project3_FeatureModelSelection.ipynb” contains code for selected features from dataset as well as tuned models and visualizations for feature importance. 
+
+Objective: 
+The objective of this project was to develop a classification model to determine whether a patient has diabetic retinopathy or not. 
+
+Methodology: 
+The dataset used is from the UCI Machine Learning Repository and has 1151 rows of data. An EC2 instance was then created on AWS, through which I ran PostgreSQL. I uploaded the data onto a database named “diabetic_ret” using the Project3_PostgreSQL notebook and the AWS server. Using the EDAClassification notebook, I examined all the available features and their relevance to the objective. The dataset contains 19 features of which 7 were selected based off EDA. These were assessment quality, retinal abnormality, microaneurysms, exudate, distance from macula to optic disc, diameter of optic disc, and AM/FM classification. The target was “Class” which was scored as 0 or 1. 
+
+Logistic regression was run as a baseline model and then run with 10-fold cross validation and with the results of GridsearchCV as optimized parameters. Random forest classifier was also run as baseline model then with optimized Gridsearch CV parameters. Naïve Bayes and linear SVM was run but not considered as potential selections. Using the voting classifier, an ensemble model was run with logistic regression and random forest. 
+
+Results and Conclusions:
+The results from all three groups of models were similar, but using ROC_AUC scores as a differentiating metric, Random Forest classifier was chosen as the best model. The f-beta score was calculated for this model, with beta=1.5, in order to weigh recall more than precision. The model has 63% accuracy which is a reasonable metric given that the classes are balanced and while there can be more improvements made, this model achieved the goal of predicting whether a patient has diabetic retinopathy a majority of the time. 
+
